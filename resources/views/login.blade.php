@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login - NASA Studios | Admin Dashboard  </title>
+    <title>Login - FireStock | Admin Dashboard  </title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/fav-ic-n.png') }}"/>
@@ -42,11 +42,9 @@
                         <div class="row">
                             <div class="col-md-10 offset-md-1">
                                 <div class="d-block d-lg-none text-center text-lg-start">
-                                    <img width="120" src="{{ asset('admin/logo.jpg')}}" alt="logo">
                                 </div>
                                 <div class="my-5 text-center text-lg-start">
                                     <h1 class="display-8">Sign In</h1>
-                                    <p class="text-muted">Sign in to NASA Studios to continue</p>
                                 </div>
                                 <form class="mb-5" action="{{route('login')}}" method="POST">
                                     @csrf
@@ -69,10 +67,10 @@
                     </div>
                     <div class="col d-none d-lg-flex border-start align-items-center justify-content-between flex-column text-center">
                         <div class="logo">
-                            <img width="220" src="{{ asset('admin/logo.jpg')}}" alt="logo">
+                            {{-- <img width="220" src="{{ asset('admin/logo.jpg')}}" alt="logo"> --}}
                         </div>
                         <div>
-                            <h3 class="fw-bold">Welcome to NASA Studios</h3>
+                            <h3 class="fw-bold">Welcome to Fire Stock</h3>
                           
                         </div>
                        
