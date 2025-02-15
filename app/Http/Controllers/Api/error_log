@@ -1,0 +1,16 @@
+[29-Jan-2025 22:12:19 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Api/InventoryController.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Api/InventoryController.php on line 9
+[29-Jan-2025 22:12:23 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Api/AuthController.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Api/AuthController.php on line 15
+[01-Feb-2025 07:51:49 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Api/InventoryController.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Api/InventoryController.php on line 9
+[01-Feb-2025 14:06:05 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Api/AuthController.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Api/AuthController.php on line 15

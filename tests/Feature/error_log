@@ -19,3 +19,19 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/hamiltob/public_html/nasa/tests/Feature/ExampleTest.php on line 8
+[16-Jan-2025 06:03:09 UTC] PHP Fatal error:  Uncaught Error: Class 'Tests\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/Feature/ExampleTest.php on line 8
+[21-Jan-2025 17:54:56 UTC] PHP Fatal error:  Uncaught Error: Class 'Tests\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/Feature/ExampleTest.php on line 8
+[26-Jan-2025 17:25:09 UTC] PHP Fatal error:  Uncaught Error: Class 'Tests\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/Feature/ExampleTest.php on line 8
+[02-Feb-2025 08:40:10 UTC] PHP Fatal error:  Uncaught Error: Class 'Tests\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/Feature/ExampleTest.php on line 8

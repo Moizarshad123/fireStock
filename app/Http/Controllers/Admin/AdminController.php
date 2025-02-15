@@ -8,17 +8,12 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Setting;
-use App\Models\TillOpen;
 use Auth, Mail;
 
 class AdminController extends Controller
 {
     public function dashboard() {
-
-        $checkTillOpen  = TillOpen::where('date',date('Y-m-d'))->where('user_id', auth()->user()->id)->where('type', 'till_open')->first();
-        $checkTillClose = TillOpen::where('date',date('Y-m-d'))->where('user_id', auth()->user()->id)->where('type', 'till_close')->first();
-
-        return view('admin.dashboard', compact('checkTillOpen', 'checkTillClose'));
+        return view('admin.dashboard');
     }
 
     public function login(Request $request) {

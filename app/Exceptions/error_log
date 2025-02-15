@@ -19,3 +19,15 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/hamiltob/public_html/nasa/app/Exceptions/Handler.php on line 7
+[16-Jan-2025 05:58:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Exceptions\Handler' not found in /home/hamiltob/public_html/fireStock/app/Exceptions/Handler.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Exceptions/Handler.php on line 8
+[27-Jan-2025 21:42:11 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Exceptions\Handler' not found in /home/hamiltob/public_html/fireStock/app/Exceptions/Handler.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Exceptions/Handler.php on line 8
+[29-Jan-2025 22:08:47 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Exceptions\Handler' not found in /home/hamiltob/public_html/fireStock/app/Exceptions/Handler.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Exceptions/Handler.php on line 8

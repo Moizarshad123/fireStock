@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\InventoryController;
+use App\Http\Controllers\Api\PaymentController;
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -16,14 +18,20 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::PUT('update-user-location', 'updateUserLocation');
         Route::POST('change-password', 'changePassword');
         Route::POST('logout', 'logout');
+        Route::POST('support', 'support');
     });
 
     Route::controller(InventoryController::class)->group(function () {
         Route::POST('add-inventory', 'add_inventory');
+        Route::POST('update-inventory', 'update_inventory');
         Route::GET('inventories', 'inventories');
+    }); 
 
-        
 
+    Route::controller(PaymentController::class)->group(function () {
+        Route::POST('add-payment', 'addPayment');
+        // Route::POST('update-inventory', 'update_inventory');
+        Route::GET('payments', 'payments');
     }); 
 });
 

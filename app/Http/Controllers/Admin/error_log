@@ -142,3 +142,15 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/hamiltob/public_html/nasa/app/Http/Controllers/Admin/SmallOrderController.php on line 27
+[29-Jan-2025 22:12:11 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Admin/AdminController.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Admin/AdminController.php on line 14
+[01-Feb-2025 21:04:47 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Admin/AdminController.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Admin/AdminController.php on line 14
+[14-Feb-2025 07:37:54 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Admin/AdminController.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Controllers/Admin/AdminController.php on line 14

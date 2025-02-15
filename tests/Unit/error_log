@@ -15,3 +15,15 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/hamiltob/public_html/nasa/tests/Unit/ExampleTest.php on line 7
+[16-Jan-2025 06:03:26 UTC] PHP Fatal error:  Uncaught Error: Class 'PHPUnit\Framework\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/Unit/ExampleTest.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/Unit/ExampleTest.php on line 7
+[21-Jan-2025 15:53:33 UTC] PHP Fatal error:  Uncaught Error: Class 'PHPUnit\Framework\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/Unit/ExampleTest.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/Unit/ExampleTest.php on line 7
+[26-Jan-2025 18:02:53 UTC] PHP Fatal error:  Uncaught Error: Class 'PHPUnit\Framework\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/Unit/ExampleTest.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/Unit/ExampleTest.php on line 7

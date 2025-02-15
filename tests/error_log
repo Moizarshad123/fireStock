@@ -38,3 +38,23 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/hamiltob/public_html/mobile_app/tests/TestCase.php on line 7
+[15-Jan-2025 02:48:32 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Testing\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/TestCase.php on line 7
+[18-Jan-2025 22:16:31 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Testing\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/TestCase.php on line 7
+[26-Jan-2025 17:03:57 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Testing\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/TestCase.php on line 7
+[27-Jan-2025 04:22:06 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Testing\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/TestCase.php on line 7
+[29-Jan-2025 08:50:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Testing\TestCase' not found in /home/hamiltob/public_html/fireStock/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/tests/TestCase.php on line 7

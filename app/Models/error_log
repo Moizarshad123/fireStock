@@ -297,3 +297,87 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/hamiltob/public_html/mobile_app/app/Models/Role.php on line 8
+[16-Jan-2025 05:59:17 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Inventory.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Inventory.php on line 8
+[16-Jan-2025 05:59:19 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Notifications.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Notifications.php on line 9
+[16-Jan-2025 05:59:22 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Role.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Role.php on line 8
+[16-Jan-2025 05:59:24 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Setting.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Setting.php on line 8
+[16-Jan-2025 05:59:26 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Auth\User' not found in /home/hamiltob/public_html/fireStock/app/Models/User.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/User.php on line 12
+[24-Jan-2025 22:32:23 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Setting.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Setting.php on line 8
+[27-Jan-2025 19:31:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Auth\User' not found in /home/hamiltob/public_html/fireStock/app/Models/User.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/User.php on line 12
+[27-Jan-2025 19:33:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Notifications.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Notifications.php on line 9
+[27-Jan-2025 20:47:23 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Inventory.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Inventory.php on line 8
+[27-Jan-2025 23:11:09 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Role.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Role.php on line 8
+[29-Jan-2025 22:09:52 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Notifications.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Notifications.php on line 9
+[29-Jan-2025 22:09:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Inventory.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Inventory.php on line 8
+[29-Jan-2025 22:09:59 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Setting.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Setting.php on line 8
+[29-Jan-2025 22:10:11 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Role.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Role.php on line 8
+[29-Jan-2025 22:10:22 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Auth\User' not found in /home/hamiltob/public_html/fireStock/app/Models/User.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/User.php on line 12
+[29-Jan-2025 22:11:13 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Auth\User' not found in /home/hamiltob/public_html/fireStock/app/Models/User.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/User.php on line 12
+[02-Feb-2025 01:07:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Setting.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Setting.php on line 8
+[02-Feb-2025 01:53:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Inventory.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Inventory.php on line 8
+[02-Feb-2025 11:28:32 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Notifications.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Notifications.php on line 9
+[02-Feb-2025 13:10:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/hamiltob/public_html/fireStock/app/Models/Role.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/Role.php on line 8
+[03-Feb-2025 23:21:05 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Auth\User' not found in /home/hamiltob/public_html/fireStock/app/Models/User.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Models/User.php on line 12

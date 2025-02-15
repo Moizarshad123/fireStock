@@ -11,3 +11,15 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/hamiltob/public_html/nasa/app/Http/Kernel.php on line 7
+[16-Jan-2025 05:59:05 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Http\Kernel' not found in /home/hamiltob/public_html/fireStock/app/Http/Kernel.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Kernel.php on line 7
+[27-Jan-2025 23:23:19 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Http\Kernel' not found in /home/hamiltob/public_html/fireStock/app/Http/Kernel.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Kernel.php on line 7
+[29-Jan-2025 22:10:26 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Http\Kernel' not found in /home/hamiltob/public_html/fireStock/app/Http/Kernel.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/hamiltob/public_html/fireStock/app/Http/Kernel.php on line 7

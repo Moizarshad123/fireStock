@@ -3,3 +3,9 @@
 [01-Oct-2024 07:21:36 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 7.4.33. in /home/hamiltob/public_html/nasa/vendor/composer/platform_check.php on line 28
 [04-Oct-2024 17:46:05 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 7.2.34. in /home/hamiltob/public_html/nasa/vendor/composer/platform_check.php on line 28
 [31-Dec-2024 00:11:08 Asia/Karachi] PHP Fatal error:  Trait 'Laravel\Sanctum\HasApiTokens' not found in /home/hamiltob/public_html/mobile_app/app/Models/User.php on line 12
+[09-Jan-2025 11:05:09 Asia/Karachi] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/hamiltob/public_html/fireStock/vendor/psr/log/src/LoggerInterface.php on line 30
+[09-Jan-2025 11:05:09 Asia/Karachi] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[09-Jan-2025 11:05:33 Asia/Karachi] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/hamiltob/public_html/fireStock/vendor/psr/log/src/LoggerInterface.php on line 30
+[09-Jan-2025 11:05:33 Asia/Karachi] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[09-Jan-2025 11:05:52 Asia/Karachi] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/hamiltob/public_html/fireStock/vendor/psr/log/src/LoggerInterface.php on line 30
+[09-Jan-2025 11:05:52 Asia/Karachi] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
