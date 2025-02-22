@@ -17,12 +17,12 @@ class PaymentController extends Controller
         if ($validator->fails()){
             return $this->error('Validation Error', 429, [], $validator->errors());
         }
-        if($request->type == "Pending") {
-            $payments = Payment::where('user_id', auth()->user()->id)->where('status', "Pending")->orderByDESC('id')->get();
-        } else {
-            $payments = Payment::where('user_id', auth()->user()->id)->where('status', "Completed")->orderByDESC('id')->get();
+        // if($request->type == "Pending") {
+            $payments = Payment::where('user_id', auth()->user()->id)->orderByDESC('id')->get();
+        // } else {
+            // $payments = Payment::where('user_id', auth()->user()->id)->where('status', "Completed")->orderByDESC('id')->get();
 
-        }
+        // }
 
         return $this->success($payments);
     }

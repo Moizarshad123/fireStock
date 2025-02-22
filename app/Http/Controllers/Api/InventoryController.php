@@ -21,13 +21,24 @@ class InventoryController extends Controller
             $fileName = $dir.$fileName;
             $image = asset($fileName);
         }
+
+        if($request->id != null) {
+
+            $inventory        = Inventory::find($request->id); 
+            $inventory->name  = $request->name;
+            $inventory->count = $request->count;
+            $inventory->image = $image;
+            $inventory->save();
+
+        } else {
+            Inventory::create([
+                "user_id"=>auth()->user()->id,
+                "name"=>$request->name,
+                "count"=>$request->count,
+                "image"=>$image
+            ]);
+        }
         
-        Inventory::create([
-            "user_id"=>auth()->user()->id,
-            "name"=>$request->name,
-            "count"=>$request->count,
-            "image"=>$image
-        ]);
         $inventories = Inventory::where("user_id", auth()->user()->id)->orderByDESC('id')->get();
         return $this->success($inventories);
     }

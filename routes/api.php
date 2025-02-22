@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::controller(InventoryController::class)->group(function () {
         Route::POST('add-inventory', 'add_inventory');
-        Route::POST('update-inventory', 'update_inventory');
+        // Route::POST('update-inventory', 'update_inventory');
         Route::GET('inventories', 'inventories');
     }); 
 
