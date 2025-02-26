@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
+use App\Models\Payment;
+use App\Models\Member;
 
 class InventoryController extends Controller
 {
@@ -43,7 +45,6 @@ class InventoryController extends Controller
         return $this->success($inventories);
     }
 
-
     public function update_inventory(Request $request) {
 
         $validator = Validator::make($request->all(), [
@@ -80,6 +81,28 @@ class InventoryController extends Controller
         return $this->success($inventories);
     }
 
+    public function dashboard(Request $request) {
 
-    
+        $inventories = Inventory::where("user_id", auth()->user()->id)->orderByDESC('id')->skip(0)->take(4)->get();
+        $payments    = Payment::where("user_id", auth()->user()->id)->orderByDESC('id')->skip(0)->take(2)->get();
+
+        $arr = ["inventories"=>$inventories, "payments"=>$payments];
+        return $this->success($arr);
+    }
+
+    public function addMember(Request $request) {
+        try {
+            
+            $member = Member::create([
+                "added_by"=>auth()->user()->id,
+                "name"=>$request->name,
+                "email"=>$request->email,
+                "phone"=>$request->phone
+            ]);
+
+            return $this->success([], "Member added successfully");
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
 }

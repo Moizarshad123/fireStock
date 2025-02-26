@@ -25,6 +25,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::POST('add-inventory', 'add_inventory');
         // Route::POST('update-inventory', 'update_inventory');
         Route::GET('inventories', 'inventories');
+        Route::GET('dashboard', 'dashboard');
+        Route::POST('add-member', 'addMember');
+
     }); 
 
 
