@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Inventory;
 use App\Models\Payment;
 use App\Models\Member;
+use App\Models\Notifications;
+use App\Models\User;
+
 
 class InventoryController extends Controller
 {
@@ -54,22 +57,35 @@ class InventoryController extends Controller
             return $this->error('Validation Error', 429, [], $validator->errors());
         }
 
-        $image = "";
-        $inventory = Inventory::find($request->inventory_id);
-        if ($request->has('image')) {
+        if(auth()->user()->role_id == 2) {
+            $image = "";
+            $inventory = Inventory::find($request->inventory_id);
+            if ($request->has('image')) {
+    
+                $dir      = "uploads/blogs/";
+                $file     = $request->file('image');
+                $fileName = time().'-service.'.$file->getClientOriginalExtension();
+                $file->move($dir, $fileName);
+                $fileName = $dir.$fileName;
+                $image = asset($fileName);
+                $inventory->image=$image;
+            }
+            
+            $inventory->name=$request->name;
+            $inventory->count=$request->count;
+            $inventory->save();
+        } else {
 
-            $dir      = "uploads/blogs/";
-            $file     = $request->file('image');
-            $fileName = time().'-service.'.$file->getClientOriginalExtension();
-            $file->move($dir, $fileName);
-            $fileName = $dir.$fileName;
-            $image = asset($fileName);
-            $inventory->image=$image;
+            $inventory = Inventory::find($request->inventory_id);      
+            $inventory->count=$request->count;
+            $inventory->save();
+            Notifications::create([
+                'sender_id'=>auth()->user()->id,
+                'receiver_id'=>$inventory->user_id,
+                'title'=>"Update Inventory",
+                'notification'=> $request->name.' inventory is been update by '.auth()->user()->name,
+            ]);
         }
-        
-        $inventory->name=$request->name;
-        $inventory->count=$request->count;
-        $inventory->save();
 
         $inventories = Inventory::where("user_id", auth()->user()->id)->orderByDESC('id')->get();
         return $this->success($inventories);
@@ -81,26 +97,24 @@ class InventoryController extends Controller
         return $this->success($inventories);
     }
 
-    public function dashboard(Request $request) {
-
-        $inventories = Inventory::where("user_id", auth()->user()->id)->orderByDESC('id')->skip(0)->take(4)->get();
-        $payments    = Payment::where("user_id", auth()->user()->id)->orderByDESC('id')->skip(0)->take(2)->get();
-
-        $arr = ["inventories"=>$inventories, "payments"=>$payments];
-        return $this->success($arr);
-    }
-
-    public function addMember(Request $request) {
+    public function deleteInventory(Request $request) {
         try {
-            
-            $member = Member::create([
-                "added_by"=>auth()->user()->id,
-                "name"=>$request->name,
-                "email"=>$request->email,
-                "phone"=>$request->phone
+            $validator = Validator::make($request->all(), [
+                'inventory_id' => 'required',
             ]);
+            if ($validator->fails()){
+                return $this->error('Validation Error', 200, [], $validator->errors());
+            }
 
-            return $this->success([], "Member added successfully");
+            $inventory = Inventory::find($request->inventory_id);
+            if(!$inventory) {
+                return $this->error("No Inventory Found");
+            }
+            $inventory->delete();
+
+            $inventories = Inventory::where("user_id", auth()->user()->id)->orderByDESC('id')->get();
+            return $this->success($inventories, "Inventory Deleted");
+
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }

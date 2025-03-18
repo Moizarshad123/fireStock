@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\MemberController;
+use App\Http\Controllers\Api\ManagerController;
 
 
 
@@ -22,20 +24,33 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 
     Route::controller(InventoryController::class)->group(function () {
-        Route::POST('add-inventory', 'add_inventory');
-        // Route::POST('update-inventory', 'update_inventory');
         Route::GET('inventories', 'inventories');
-        Route::GET('dashboard', 'dashboard');
-        Route::POST('add-member', 'addMember');
-
+        Route::POST('add-inventory', 'add_inventory');
+        Route::POST('update-inventory', 'update_inventory');
+        Route::DELETE('delete-inventory', 'deleteInventory');
     }); 
-
 
     Route::controller(PaymentController::class)->group(function () {
         Route::POST('add-payment', 'addPayment');
-        // Route::POST('update-inventory', 'update_inventory');
+        Route::POST('update-payment', 'updatePayment');
         Route::GET('payments', 'payments');
     }); 
+
+    Route::controller(MemberController::class)->group(function () {
+        Route::GET('member-dashboard', 'memberDashboard');
+        Route::GET('join-requests', 'joinRequests');
+    });
+    
+    Route::controller(ManagerController::class)->group(function () {
+        Route::GET('dashboard', 'managerDashboard');
+        Route::POST('add-member', 'addMember');
+        Route::POST('edit-station', 'editStation');
+        Route::GET('notifications', 'notifications');
+
+
+    });
+
+    
 });
 
 Route::prefix('auth')->group(function() {

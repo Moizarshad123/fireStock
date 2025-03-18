@@ -23,6 +23,8 @@ class User extends Authenticatable
         'otp',
         'phone',
         'image',
+        'station_name',
+        'station_image',
         'api_token',
         'fcm_token',
         'password',

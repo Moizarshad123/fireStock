@@ -9,4 +9,8 @@ class Inventory extends Model
 {
     use HasFactory;
     protected $fillable = ["user_id", "name", "count", "image"];
+
+    public function manager() {
+        return $this->hasOne(User::class, 'id','user_id');
+    }
 }

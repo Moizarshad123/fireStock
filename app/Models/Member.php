@@ -10,6 +10,7 @@ class Member extends Model
     use HasFactory;
     protected $fillable = [
         "added_by",
+        "station_id",
         "name",
         "email",
         "phone",
