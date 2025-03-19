@@ -9,11 +9,12 @@ class Member extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "added_by",
+        "user_id",
         "station_id",
         "name",
         "email",
         "phone",
+        "image",
         "status"
     ]; 
 }

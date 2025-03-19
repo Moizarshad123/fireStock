@@ -46,8 +46,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::POST('add-member', 'addMember');
         Route::POST('edit-station', 'editStation');
         Route::GET('notifications', 'notifications');
+        Route::GET('mark-as-read', 'markAsRead');
+        Route::GET('members', 'members');
+        Route::GET('remove-member', 'removeMember');
 
 
+
+
+        
     });
 
     
