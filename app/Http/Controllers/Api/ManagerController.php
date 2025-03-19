@@ -27,7 +27,6 @@ class ManagerController extends Controller
     public function addMember(Request $request) {
         try {
 
-
             $image = "";
             if ($request->has('image')) {
     
@@ -119,12 +118,10 @@ class ManagerController extends Controller
         return $this->success($notifications, "Notification marked as read");
     }
 
-
     public function members() {
         $members = Member::where('station_id', auth()->user()->id)->orderByDESC('id')->get();
         return $this->success($members);
     }
-
 
     public function removeMember(Request $request) {
 

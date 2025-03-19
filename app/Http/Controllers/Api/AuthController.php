@@ -66,20 +66,22 @@ class AuthController extends Controller
         $user->api_token =  auth()->user()->createToken('API Token')->plainTextToken;
         $user->save();
         
-        $arr = [
-                "id" => $user->id,
-                "name" => $user->name,
-                "email" => $user->email,
-                "phone" => $user->phone,
-                "otp" => (int)$user->otp,
-                "image" => $user->image,
-                "api_token" => $user->api_token,
-                "fcm_token" => $user->fcm_token,
-                "is_push_notification" => (int)$user->is_push_notification,
-                "status" => (int)$user->status,
-                "is_verified" => (int)$user->is_verified
-            ];
-        return $this->success($arr);
+        // $arr = [
+        //         "id"    => $user->id,
+        //         "name"  => $user->name,
+        //         "email" => $user->email,
+        //         "phone" => $user->phone,
+        //         "otp"   => (int)$user->otp,
+        //         "image" => $user->image,
+        //         "station_name"  => $user->station_name,
+        //         "station_image" => $user->station_image,
+        //         "api_token"     => $user->api_token,
+        //         "fcm_token"     => $user->fcm_token,
+        //         "is_push_notification" => (int)$user->is_push_notification,
+        //         "status"      => (int)$user->status,
+        //         "is_verified" => (int)$user->is_verified
+        //     ];
+        return $this->success($user);
     }
 
     public function register(Request $request) {
@@ -201,20 +203,20 @@ class AuthController extends Controller
                 $user->status    = 1;
                 $user->save();
                 Auth::login($user);
-                $arr = [
-                    "id" => $user->id,
-                    "name" => $user->name,
-                    "email" => $user->email,
-                    "phone" => $user->phone,
-                    "otp" => (int)$user->otp,
-                    "image" => $user->image,
-                    "api_token" => $user->api_token,
-                    "fcm_token" => $user->fcm_token,
-                    "is_push_notification" => (int)$user->is_push_notification,
-                    "status" => (int)$user->status,
-                    "is_verified" => (int)$user->is_verified
-                ];
-                return $this->success($arr, 'Token Verified Successfully.');
+                // $arr = [
+                //     "id" => $user->id,
+                //     "name" => $user->name,
+                //     "email" => $user->email,
+                //     "phone" => $user->phone,
+                //     "otp" => (int)$user->otp,
+                //     "image" => $user->image,
+                //     "api_token" => $user->api_token,
+                //     "fcm_token" => $user->fcm_token,
+                //     "is_push_notification" => (int)$user->is_push_notification,
+                //     "status" => (int)$user->status,
+                //     "is_verified" => (int)$user->is_verified
+                // ];
+                return $this->success($user, 'Token Verified Successfully.');
             } else {
                 return $this->error('Invalid OTP Token',422);
             }
@@ -318,22 +320,22 @@ class AuthController extends Controller
                 return $this->error($ex->getMessage());
             }
             
-              $arr = [
-                    "id" => $user->id,
-                    "name" => $user->name,
-                    "email" => $user->email,
-                    "phone" => $user->phone,
-                    "otp" => (int)$user->otp,
-                    "image" => $user->image,
-                    "api_token" => $user->api_token,
-                    "fcm_token" => $user->fcm_token,
-                    "is_push_notification" => (int)$user->is_push_notification,
-                    "status" => (int)$user->status,
-                    "is_verified" => (int)$user->is_verified
-                ];
+            //   $arr = [
+            //         "id" => $user->id,
+            //         "name" => $user->name,
+            //         "email" => $user->email,
+            //         "phone" => $user->phone,
+            //         "otp" => (int)$user->otp,
+            //         "image" => $user->image,
+            //         "api_token" => $user->api_token,
+            //         "fcm_token" => $user->fcm_token,
+            //         "is_push_notification" => (int)$user->is_push_notification,
+            //         "status" => (int)$user->status,
+            //         "is_verified" => (int)$user->is_verified
+            //     ];
 
             // $data = array('otp' => $user->otp, 'token' => $user->api_token);
-            return $this->success($arr, 'OTP has been sent on your phone.');
+            return $this->success($user, 'OTP has been sent on your phone.');
         }else{
             return $this->error('Your Phone is not registered. Please Signup', 429);
         }
@@ -355,7 +357,7 @@ class AuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            return $this->success([], 'Password Updated Successfully');
+            return $this->success($user, 'Password Updated Successfully');
 
         } else {
             return $this->error("Please enter old password correctly..!!");
