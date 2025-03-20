@@ -44,7 +44,8 @@ class ManagerController extends Controller
                 "email"     => $request->email,
                 "phone"     => $request->phone,
                 "password"  => Hash::make($request->password),
-                "image"     => $image
+                "image"     => $image,
+                "has_station" => 1
             ]);
 
             $member = Member::create([
@@ -54,7 +55,6 @@ class ManagerController extends Controller
                 "email"      => $request->email,
                 "phone"      => $request->phone,
                 "image"      => $image
-
             ]);
 
             return $this->success([], "Member added successfully");

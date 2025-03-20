@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::controller(MemberController::class)->group(function () {
         Route::GET('member-dashboard', 'memberDashboard');
-        Route::GET('join-requests', 'joinRequests');
+        Route::POST('join-request', 'joinRequest');
     });
     
     Route::controller(ManagerController::class)->group(function () {

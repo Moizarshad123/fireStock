@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Member;
 use App\Models\User;
 use App\Models\Inventory;
+use App\Models\StationRequest;
+
 
 class MemberController extends Controller
 {
@@ -22,6 +25,28 @@ class MemberController extends Controller
         } else {
             $inventories = Inventory::with("manager")->where('user_id', $member->station_id)->orderByDESC('id')->get();
             return $this->success($inventories);
+        }
+    }
+
+    public function joinRequest(Request $request) {
+        try {
+
+            $validator = Validator::make($request->all(), [
+                'station_id' => 'required',
+            ]);
+            if ($validator->fails()){
+                return $this->error('Validation Error', 429, [], $validator->errors());
+            }
+
+            StationRequest::firstOrCreate(['member_id'=>auth()->user()->id,'station_id'=>$request->station_id],[
+                'member_id'=>auth()->user()->id,
+                'station_id'=>$request->station_id,
+                'status'=>"Pending"
+            ]);
+
+            return $this->success([], "Station join request created");
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage());
         }
     }
 }
