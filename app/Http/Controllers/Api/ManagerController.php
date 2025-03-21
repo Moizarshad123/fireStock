@@ -46,7 +46,8 @@ class ManagerController extends Controller
                 "phone"     => $request->phone,
                 "password"  => Hash::make($request->password),
                 "image"     => $image,
-                "has_station" => 1
+                "has_station" => 1,
+                "station_id" => auth()->user()->id,
             ]);
 
             $member = Member::create([
@@ -198,6 +199,7 @@ class ManagerController extends Controller
 
             $user = User::find($req->member_id);
             $user->has_station = 1;
+            $user->station_id = $req->station_id;
             $user->save();
 
             Notifications::create([

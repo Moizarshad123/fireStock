@@ -26,6 +26,7 @@ class User extends Authenticatable
         'station_name',
         'station_image',
         'has_station',
+        'station_id',
         'api_token',
         'fcm_token',
         'password',

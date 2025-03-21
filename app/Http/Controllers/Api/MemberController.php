@@ -58,4 +58,9 @@ class MemberController extends Controller
             return $this->error($e->getMessage());
         }
     }
+
+    public function stations(Request $request) {
+        $stations = User::Select('id', "station_name", "station_image")->where('role_id', 2)->get();
+        return $this->success($stations);
+    }
 }

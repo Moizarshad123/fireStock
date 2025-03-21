@@ -12,13 +12,15 @@ class AddNewwCollssInUsersTable extends Migration
             $table->String('station_name')->after("email")->nullable();
             $table->String('station_image')->after("station_name")->nullable();
             $table->boolean('has_station')->after("station_image")->default(0);
+            $table->Integer('station_id')->after("has_station")->default(0);
+
         });
     }
 
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['station_name', 'station_image', 'has_station']);
+            $table->dropColumn(['station_name', 'station_image', 'has_station', 'station_id']);
         });
     }
 }
