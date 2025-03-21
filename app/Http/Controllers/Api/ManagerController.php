@@ -175,6 +175,7 @@ class ManagerController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'request_id' => 'required',
+                'status' => 'required'
             ]);
             if ($validator->fails()){
                 return $this->error('Validation Error', 429, [], $validator->errors());
@@ -186,7 +187,7 @@ class ManagerController extends Controller
             if(!$req) {
                 return $this->error("Station Request ID not found");
             }
-            $req->status = "Approved";
+            $req->status = $request->status;
             $req->save();
 
             $member = Member::where("user_id", $req->member_id)->first();
@@ -206,11 +207,17 @@ class ManagerController extends Controller
                 'sender_id'=>auth()->user()->id,
                 'receiver_id'=>$req->member_id,
                 'title'=>"Update Join Station Status",
-                'notification'=> 'Your join station request status updated by '.auth()->user()->name,
+                'notification'=> auth()->user()->name.' '.$request->status.' your request',
             ]);
 
+            $stationId = auth()->user()->id;
+            $members   = StationRequest::with("member")
+                                        ->where("station_id", $stationId)
+                                        ->where('status', "Pending")
+                                        ->orderByDESC('id')->get();
+
             DB::commit();
-            return $this->success([], "Station join request status updated");
+            return $this->success($members, "Station join request status updated");
 
         } catch (\Exception $e) {
             DB::rollback();

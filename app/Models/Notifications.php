@@ -21,7 +21,7 @@ class Notifications extends Model
     ];
 
     public function sender() {
-        return $this->hasOne(User::class, 'id','sender_id');
+        return $this->belongsTo(User::class, 'sender_id');
     }
 
     public function receiver() {
