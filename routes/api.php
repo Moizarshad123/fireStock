@@ -49,10 +49,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::GET('mark-as-read', 'markAsRead');
         Route::GET('members', 'members');
         Route::GET('remove-member', 'removeMember');
-
-
-
-
+        Route::GET('station-requests', 'stationRequests');
+        Route::POST('update-request-status', 'updateRequestStatus');
         
     });
 

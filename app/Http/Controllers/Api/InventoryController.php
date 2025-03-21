@@ -93,7 +93,15 @@ class InventoryController extends Controller
 
     public function inventories() {
 
-        $inventories = Inventory::where("user_id", auth()->user()->id)->orderByDESC('id')->get();
+        if(auth()->user()->role_id == 3) {
+            $stationId   = Member::where('user_id', auth()->user()->id)->pluck('station_id')->first();
+            if(!$stationId) {
+                return $his->error("No Station ID found");
+            }
+            $inventories = Inventory::where("user_id", $stationId)->orderByDESC('id')->get();
+        } else {
+            $inventories = Inventory::where("user_id", auth()->user()->id)->orderByDESC('id')->get();
+        }
         return $this->success($inventories);
     }
 

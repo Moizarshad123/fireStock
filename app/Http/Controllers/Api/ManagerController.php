@@ -11,7 +11,8 @@ use App\Models\Inventory;
 use App\Models\User;
 use App\Models\Notifications;
 use App\Models\Payment;
-
+use App\Models\StationRequest;
+use DB;
 
 
 class ManagerController extends Controller
@@ -152,5 +153,66 @@ class ManagerController extends Controller
         }
         $members = Member::where('station_id', auth()->user()->id)->orderByDESC('id')->get();
         return $this->success($members, "Deleted");
+    }
+
+    public function stationRequests(Request $request) {
+        try {
+            $stationId = auth()->user()->id;
+            $members   = StationRequest::with("member")
+                                        ->where("station_id", $stationId)
+                                        ->where('status', "Pending")
+                                        ->orderByDESC('id')->get();
+
+            return $this->success($members);
+
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
+
+    public function updateRequestStatus(Request $request) {
+        try {
+            $validator = Validator::make($request->all(), [
+                'request_id' => 'required',
+            ]);
+            if ($validator->fails()){
+                return $this->error('Validation Error', 429, [], $validator->errors());
+            }
+
+            DB::beginTransaction();
+
+            $req = StationRequest::find($request->request_id);
+            if(!$req) {
+                return $this->error("Station Request ID not found");
+            }
+            $req->status = "Approved";
+            $req->save();
+
+            $member = Member::where("user_id", $req->member_id)->first();
+            if(!$member) {
+                return $this->error("Member not found");
+            }
+            $member->station_id = $req->station_id;
+            $member->status     = 1;
+            $member->save();
+
+            $user = User::find($req->member_id);
+            $user->has_station = 1;
+            $user->save();
+
+            Notifications::create([
+                'sender_id'=>auth()->user()->id,
+                'receiver_id'=>$req->member_id,
+                'title'=>"Update Join Station Status",
+                'notification'=> 'Your join station request status updated by '.auth()->user()->name,
+            ]);
+
+            DB::commit();
+            return $this->success([], "Station join request status updated");
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $this->error($e->getMessage());
+        }
     }
 }

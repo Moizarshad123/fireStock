@@ -13,4 +13,9 @@ class StationRequest extends Model
         'station_id',
         'status',
     ];
+
+
+    public function member() {
+        return $this->hasOne(User::class, 'id', 'member_id');
+    }
 }

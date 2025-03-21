@@ -9,6 +9,7 @@ use App\Models\Member;
 use App\Models\User;
 use App\Models\Inventory;
 use App\Models\StationRequest;
+use App\Models\Notifications;
 
 
 class MemberController extends Controller
@@ -42,6 +43,14 @@ class MemberController extends Controller
                 'member_id'=>auth()->user()->id,
                 'station_id'=>$request->station_id,
                 'status'=>"Pending"
+            ]);
+
+
+            Notifications::create([
+                'sender_id'=>auth()->user()->id,
+                'receiver_id'=>$request->station_id,
+                'title'=>"Station Join Request",
+                'notification'=> auth()->user()->name.' creates a join station request',
             ]);
 
             return $this->success([], "Station join request created");
