@@ -33,6 +33,7 @@ class User extends Authenticatable
         'access_token',
         'is_push_notification',
         'status',
+        'is_verified'
     ];
 
     protected $hidden = [

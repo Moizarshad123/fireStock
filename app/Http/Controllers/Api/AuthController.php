@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Support;
-
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -114,11 +114,20 @@ class AuthController extends Controller
                 $token           = $user->createToken('API Token')->plainTextToken;
                 $user->api_token = $token;
                 $user->save();
+
+                if($request->user_type == 3) {
+                    $member = Member::create([
+                        "user_id"    => $user->id,
+                        "name"       => $request->name,
+                        "email"      => $request->email,
+                        "phone"      => $request->phone,
+                    ]);
+                }
              
-                $mailData = array(
-                    'otpCode'  => $otpToken,
-                    'to'       => $user->email,
-                );
+                // $mailData = array(
+                //     'otpCode'  => $otpToken,
+                //     'to'       => $user->email,
+                // );
         
                 // Mail::send('emails.otp', $mailData, function($message) use($mailData){
                 //     $message->to($mailData['to'])->subject('MobileApp - OTP Verification');

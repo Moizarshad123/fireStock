@@ -46,8 +46,12 @@ class ManagerController extends Controller
                 "phone"     => $request->phone,
                 "password"  => Hash::make($request->password),
                 "image"     => $image,
-                "has_station" => 1,
-                "station_id" => auth()->user()->id,
+                "has_station"  => 1,
+                "station_id"   => auth()->user()->id,
+                'station_name' => auth()->user()->station_name,
+                'station_image' => auth()->user()->station_image,
+                "status"=>1,
+                "is_verified"=>1
             ]);
 
             $member = Member::create([
