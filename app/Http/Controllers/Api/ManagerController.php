@@ -72,7 +72,7 @@ class ManagerController extends Controller
     public function editStation(Request $request) {
         try {
 
-            $image = "";
+            $station = User::find(auth()->user()->id);
             if ($request->has('logo') && $request->logo != null) {
     
                 $dir      = "uploads/station/";
@@ -80,12 +80,11 @@ class ManagerController extends Controller
                 $fileName = time().'-service.'.$file->getClientOriginalExtension();
                 $file->move($dir, $fileName);
                 $fileName = $dir.$fileName;
-                $image = asset($fileName);
+
+                $station->station_image = asset($fileName);
             }
 
-           $station                = User::find(auth()->user()->id);
            $station->station_name  = $request->station_name;
-           $station->station_image = $image;
            $station->save();
 
            return $this->success($station, "Station details updated");

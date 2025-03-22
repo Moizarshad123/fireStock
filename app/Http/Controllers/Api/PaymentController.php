@@ -56,7 +56,11 @@ class PaymentController extends Controller
 
             } else {
 
-                $image = "";
+                $payment = Payment::find($request->id);
+                if(!$payment) {
+                    return $this->error("No Record Found");
+                }
+
                 if ($request->has('image') && $request->image != null) {
     
                     $dir      = "uploads/payments/";
@@ -64,17 +68,14 @@ class PaymentController extends Controller
                     $fileName = time().'-payments.'.$file->getClientOriginalExtension();
                     $file->move($dir, $fileName);
                     $fileName = $dir.$fileName;
-                    $image    = asset($fileName);
+
+                    $payment->image=$image;
                 }
     
-                $payment = Payment::find($request->id);
-                if(!$payment) {
-                    return $this->error("No Record Found");
-                }
+              
                 $payment->title=$request->title;
                 $payment->description=$request->description;
                 $payment->price=$request->price;
-                $payment->image=$image;
                 $payment->status=$request->status;
                 $payment->save();
     

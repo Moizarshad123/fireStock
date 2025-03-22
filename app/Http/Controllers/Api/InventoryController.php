@@ -16,26 +16,36 @@ class InventoryController extends Controller
 {
     public function add_inventory(Request $request) {
 
-        $image = "";
-        if ($request->has('image')) {
-
-            $dir      = "uploads/blogs/";
-            $file     = $request->file('image');
-            $fileName = time().'-service.'.$file->getClientOriginalExtension();
-            $file->move($dir, $fileName);
-            $fileName = $dir.$fileName;
-            $image = asset($fileName);
-        }
-
         if($request->id != null) {
 
-            $inventory        = Inventory::find($request->id); 
+            $inventory = Inventory::find($request->id); 
+            if ($request->has('image') && $request->image != null) {
+
+                $dir      = "uploads/inventory/";
+                $file     = $request->file('image');
+                $fileName = time().'-inventory.'.$file->getClientOriginalExtension();
+                $file->move($dir, $fileName);
+                $fileName = $dir.$fileName;
+
+                $inventory->image = asset($fileName);
+            }
+
             $inventory->name  = $request->name;
             $inventory->count = $request->count;
-            $inventory->image = $image;
             $inventory->save();
 
         } else {
+
+            $image = "";
+            if ($request->has('image') && $request->image != null) {
+    
+                $dir      = "uploads/inventory/";
+                $file     = $request->file('image');
+                $fileName = time().'-inventory.'.$file->getClientOriginalExtension();
+                $file->move($dir, $fileName);
+                $fileName = $dir.$fileName;
+                $image = asset($fileName);
+            }
             Inventory::create([
                 "user_id"=>auth()->user()->id,
                 "name"=>$request->name,
