@@ -309,7 +309,7 @@ class AuthController extends Controller
             // $otpToken        = rand(pow(10, $digits-1), pow(10, $digits)-1);
             $otpToken        = 1234;
             $user->api_token = $user->createToken('API Token')->plainTextToken;
-            $user->otp       = (string)$otpToken;
+            $user->otp       = $otpToken;
             //$user->api_token = $user->createToken('API Token')->plainTextToken;
             $user->save();
             try {

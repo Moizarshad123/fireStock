@@ -24,34 +24,62 @@ class PaymentController extends Controller
     public function addPayment(Request $request) {
         try {
             
-            $validator = Validator::make($request->all(), [
-                'title' => 'required',
-                'price' => 'required',
-            ]);
-            if ($validator->fails()){
-                return $this->error('Validation Error', 429, [], $validator->errors());
+            if($request->id == null) {
+                $validator = Validator::make($request->all(), [
+                    'title' => 'required',
+                    'price' => 'required',
+                ]);
+                if ($validator->fails()){
+                    return $this->error('Validation Error', 429, [], $validator->errors());
+                }
+                $image = "";
+                if ($request->has('image') && $request->image != null) {
+    
+                    $dir      = "uploads/payments/";
+                    $file     = $request->file('image');
+                    $fileName = time().'-payments.'.$file->getClientOriginalExtension();
+                    $file->move($dir, $fileName);
+                    $fileName = $dir.$fileName;
+                    $image    = asset($fileName);
+                }
+    
+                Payment::create([
+                    "user_id"=>auth()->user()->id,
+                    "title"=>$request->title,
+                    "description"=>$request->description,
+                    "price"=>$request->price,
+                    "image"=>$image,
+                    "status"=>$request->status
+                ]);
+    
+                return $this->success([], "Payment Created");
+
+            } else {
+
+                $image = "";
+                if ($request->has('image') && $request->image != null) {
+    
+                    $dir      = "uploads/payments/";
+                    $file     = $request->file('image');
+                    $fileName = time().'-payments.'.$file->getClientOriginalExtension();
+                    $file->move($dir, $fileName);
+                    $fileName = $dir.$fileName;
+                    $image    = asset($fileName);
+                }
+    
+                $payment = Payment::find($request->id);
+                if(!$payment) {
+                    return $this->error("No Record Found");
+                }
+                $payment->title=$request->title;
+                $payment->description=$request->description;
+                $payment->price=$request->price;
+                $payment->image=$image;
+                $payment->status=$request->status;
+                $payment->save();
+    
+                return $this->success($payment, "Payment Updated");
             }
-            $image = "";
-            if ($request->has('image') && $request->image != null) {
-
-                $dir      = "uploads/payments/";
-                $file     = $request->file('image');
-                $fileName = time().'-payments.'.$file->getClientOriginalExtension();
-                $file->move($dir, $fileName);
-                $fileName = $dir.$fileName;
-                $image    = asset($fileName);
-            }
-
-            Payment::create([
-                "user_id"=>auth()->user()->id,
-                "title"=>$request->title,
-                "description"=>$request->description,
-                "price"=>$request->price,
-                "image"=>$image,
-                "status"=>$request->status
-            ]);
-
-            return $this->success([], "Payment Created");
 
         } catch (\Exception $e) {
            return $this->error($e->getMessage());
@@ -68,7 +96,7 @@ class PaymentController extends Controller
                 return $this->error('Validation Error', 429, [], $validator->errors());
             }
             $image = "";
-            if ($request->has('image')) {
+            if ($request->has('image') && $request->image != null) {
 
                 $dir      = "uploads/payments/";
                 $file     = $request->file('image');
@@ -79,11 +107,11 @@ class PaymentController extends Controller
             }
 
             $payment = Payment::find($request->payment_id);
-            $$payment->title=$request->title;
-            $$payment->description=$request->description;
-            $$payment->price=$request->price;
-            $$payment->image=$image;
-            $$payment->status=$request->status;
+            $payment->title=$request->title;
+            $payment->description=$request->description;
+            $payment->price=$request->price;
+            $payment->image=$image;
+            $payment->status=$request->status;
             $payment->save();
 
             return $this->success($payment, "Payment Updated");
