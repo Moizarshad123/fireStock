@@ -29,7 +29,7 @@ class ManagerController extends Controller
         try {
 
             $image = "";
-            if ($request->has('image')) {
+            if ($request->has('image') && $request->image != null) {
     
                 $dir      = "uploads/blogs/";
                 $file     = $request->file('image');
@@ -73,9 +73,9 @@ class ManagerController extends Controller
         try {
 
             $image = "";
-            if ($request->has('logo')) {
+            if ($request->has('logo') && $request->logo != null) {
     
-                $dir      = "uploads/blogs/";
+                $dir      = "uploads/station/";
                 $file     = $request->file('logo');
                 $fileName = time().'-service.'.$file->getClientOriginalExtension();
                 $file->move($dir, $fileName);
@@ -227,5 +227,10 @@ class ManagerController extends Controller
             DB::rollback();
             return $this->error($e->getMessage());
         }
+    }
+
+    public function getCurrentUserObject() {
+        $user = auth()->user();
+        return $this->success($user);
     }
 }

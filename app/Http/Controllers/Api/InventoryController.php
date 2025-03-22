@@ -60,9 +60,9 @@ class InventoryController extends Controller
         if(auth()->user()->role_id == 2) {
             $image = "";
             $inventory = Inventory::find($request->inventory_id);
-            if ($request->has('image')) {
+            if ($request->has('image') && $request->image != null) {
     
-                $dir      = "uploads/blogs/";
+                $dir      = "uploads/inventory/";
                 $file     = $request->file('image');
                 $fileName = time().'-service.'.$file->getClientOriginalExtension();
                 $file->move($dir, $fileName);

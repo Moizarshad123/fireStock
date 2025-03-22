@@ -32,7 +32,7 @@ class PaymentController extends Controller
                 return $this->error('Validation Error', 429, [], $validator->errors());
             }
             $image = "";
-            if ($request->has('image')) {
+            if ($request->has('image') && $request->image != null) {
 
                 $dir      = "uploads/payments/";
                 $file     = $request->file('image');

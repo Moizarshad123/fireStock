@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::GET('remove-member', 'removeMember');
         Route::GET('station-requests', 'stationRequests');
         Route::POST('update-request-status', 'updateRequestStatus');
+        Route::GET('get-current-user-object', 'getCurrentUserObject');
         
     });
 
