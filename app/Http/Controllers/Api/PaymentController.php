@@ -69,7 +69,7 @@ class PaymentController extends Controller
                     $file->move($dir, $fileName);
                     $fileName = $dir.$fileName;
 
-                    $payment->image=$image;
+                    $payment->image=asset($fileName);
                 }
     
               
