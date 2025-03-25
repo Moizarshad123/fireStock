@@ -11,9 +11,15 @@ class PaymentController extends Controller
 {
     public function payments(Request $request) {
     
+
+        if(auth()->user()->role_id == 3) {
+            $payments         = Payment::where('user_id', auth()->user()->station_id)->where('status', "Clear")->orderByDESC('id')->get();
+            $pending_payments = Payment::where('user_id', auth()->user()->station_id)->where('status', "Pending")->orderByDESC('id')->get();
+        } else {
+            $payments = Payment::where('user_id', auth()->user()->id)->where('status', "Clear")->orderByDESC('id')->get();
+            $pending_payments = Payment::where('user_id', auth()->user()->id)->where('status', "Pending")->orderByDESC('id')->get();
+        }
     
-        $payments = Payment::where('user_id', auth()->user()->id)->where('status', "Clear")->orderByDESC('id')->get();
-        $pending_payments = Payment::where('user_id', auth()->user()->id)->where('status', "Pending")->orderByDESC('id')->get();
 
         $arr["pending"] = $pending_payments;
         $arr["clear"]   = $payments;

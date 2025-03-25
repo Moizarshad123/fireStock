@@ -18,21 +18,52 @@ class InventoryController extends Controller
 
         if($request->id != null) {
 
-            $inventory = Inventory::find($request->id); 
-            if ($request->has('image') && $request->image != null) {
+            // $inventory = Inventory::find($request->id); 
+            // if ($request->has('image') && $request->image != null) {
 
-                $dir      = "uploads/inventory/";
-                $file     = $request->file('image');
-                $fileName = time().'-inventory.'.$file->getClientOriginalExtension();
-                $file->move($dir, $fileName);
-                $fileName = $dir.$fileName;
+            //     $dir      = "uploads/inventory/";
+            //     $file     = $request->file('image');
+            //     $fileName = time().'-inventory.'.$file->getClientOriginalExtension();
+            //     $file->move($dir, $fileName);
+            //     $fileName = $dir.$fileName;
 
-                $inventory->image = asset($fileName);
+            //     $inventory->image = asset($fileName);
+            // }
+
+            // $inventory->name  = $request->name;
+            // $inventory->count = $request->count;
+            // $inventory->save();
+
+
+            if(auth()->user()->role_id == 2) {
+                $image = "";
+                $inventory = Inventory::find($request->inventory_id);
+                if ($request->has('image') && $request->image != null) {
+        
+                    $dir      = "uploads/inventory/";
+                    $file     = $request->file('image');
+                    $fileName = time().'-service.'.$file->getClientOriginalExtension();
+                    $file->move($dir, $fileName);
+                    $fileName = $dir.$fileName;
+                    $image = asset($fileName);
+                    $inventory->image=$image;
+                }
+                
+                $inventory->name=$request->name;
+                $inventory->count=$request->count;
+                $inventory->save();
+            } else {
+    
+                $inventory = Inventory::find($request->id);      
+                $inventory->count=$request->count;
+                $inventory->save();
+                Notifications::create([
+                    'sender_id'=>auth()->user()->id,
+                    'receiver_id'=>$inventory->user_id,
+                    'title'=>"Update Inventory",
+                    'notification'=> $request->name.' inventory is been update by '.auth()->user()->name,
+                ]);
             }
-
-            $inventory->name  = $request->name;
-            $inventory->count = $request->count;
-            $inventory->save();
 
         } else {
 
