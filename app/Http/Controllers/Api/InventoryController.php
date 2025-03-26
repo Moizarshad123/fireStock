@@ -37,7 +37,7 @@ class InventoryController extends Controller
 
             if(auth()->user()->role_id == 2) {
                 $image = "";
-                $inventory = Inventory::find($request->inventory_id);
+                $inventory = Inventory::find($request->id);
                 if ($request->has('image') && $request->image != null) {
         
                     $dir      = "uploads/inventory/";
