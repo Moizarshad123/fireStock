@@ -322,46 +322,48 @@ class AuthController extends Controller
         if ($user != null){
 
             $digits          = 4;
-            // $otpToken        = rand(pow(10, $digits-1), pow(10, $digits)-1);
-            $otpToken        = 1234;
+            $otpToken        = rand(pow(10, $digits-1), pow(10, $digits)-1);
+            // $otpToken        = 1234;
             $user->api_token = $user->createToken('API Token')->plainTextToken;
             $user->otp       = $otpToken;
             //$user->api_token = $user->createToken('API Token')->plainTextToken;
             $user->save();
-            try {
-                // $messageBody = env('APP_NAME')."\nOTP token is:$otpToken";
-                // $this->sendMessageToClient($user->phone, $messageBody);
+            // try {
+            //     // $messageBody = env('APP_NAME')."\nOTP token is:$otpToken";
+            //     // $this->sendMessageToClient($user->phone, $messageBody);
 
-                $mailData = array(
-                    'otpCode'  => $otpToken,
-                    'to'       => $request->email,
-                );
+            //     $mailData = array(
+            //         'otpCode'  => $otpToken,
+            //         'to'       => $request->email,
+            //     );
         
-                // Mail::send('emails.otp', $mailData, function($message) use($mailData){
-                //     $message->to($mailData['to'])->subject('MobileApp - OTP Verification');
-                // });
+            //     // Mail::send('emails.otp', $mailData, function($message) use($mailData){
+            //     //     $message->to($mailData['to'])->subject('MobileApp - OTP Verification');
+            //     // });
 
-            } catch (\Exception $ex){
-                return $this->error($ex->getMessage());
-            }
+            // } catch (\Exception $ex){
+            //     return $this->error($ex->getMessage());
+            // }
+
+            try {
+                    $response = Http::withBasicAuth('mcgrew.zach@gmail.com', '89ACA402-5D94-6FDB-2069-6D284D6EF6EE')
+                                ->post('https://rest.clicksend.com/v3/sms/send', [
+                                    'messages' => [
+                                        [
+                                            'body' => 'Firestock - Your OTP code is '.$otpToken,
+                                            'to'   => $user->phone,
+                                            'from' => $user->phone,
+                                        ],
+                                    ],
+                                ]);
+
+                } catch (\Exception $ex) {
+
+                    return $this->error($ex->getMessage());
+                }
             
-            //   $arr = [
-            //         "id" => $user->id,
-            //         "name" => $user->name,
-            //         "email" => $user->email,
-            //         "phone" => $user->phone,
-            //         "otp" => (int)$user->otp,
-            //         "image" => $user->image,
-            //         "api_token" => $user->api_token,
-            //         "fcm_token" => $user->fcm_token,
-            //         "is_push_notification" => (int)$user->is_push_notification,
-            //         "status" => (int)$user->status,
-            //         "is_verified" => (int)$user->is_verified
-            //     ];
-
-            // $data = array('otp' => $user->otp, 'token' => $user->api_token);
             return $this->success($user, 'OTP has been sent on your phone.');
-        }else{
+        } else {
             return $this->error('Your Phone is not registered. Please Signup', 429);
         }
     }
