@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Http;
 use Twilio\Rest\Client;
 use Carbon\Carbon;
 use Mail, DB;
@@ -88,22 +89,23 @@ class AuthController extends Controller
         try {
            
             $check_user = User::where('email', $request->email)->first();
-            $validator = Validator::make($request->all(), [
+            $validator  = Validator::make($request->all(), [
                 'user_type' => 'required',
                 'phone'     => 'required',
                 'email'     => 'required',
             ]);
-            if ($validator->fails()){
+            if ($validator->fails()) {
                 return $this->error('Validation Error', 200, [], $validator->errors());
             }
             if($check_user == null) {
 
+                DB::beginTransaction();
                 $digits   = 4;
-                // $otpToken =  rand(pow(10, $digits-1), pow(10, $digits)-1);
-                $otpToken =  1234;
+                $otpToken = rand(pow(10, $digits-1), pow(10, $digits)-1);
+                // $otpToken =  1234;
 
                 $user = User::create([
-                    "role_id"    => $request->user_type,
+                    "role_id"   => $request->user_type,
                     "name"      => $request->name,
                     "email"     => $request->email,
                     "phone"     => $request->phone,
@@ -123,19 +125,25 @@ class AuthController extends Controller
                         "phone"      => $request->phone,
                     ]);
                 }
-             
-                // $mailData = array(
-                //     'otpCode'  => $otpToken,
-                //     'to'       => $user->email,
-                // );
-        
-                // Mail::send('emails.otp', $mailData, function($message) use($mailData){
-                //     $message->to($mailData['to'])->subject('MobileApp - OTP Verification');
-                // });
+                            
+                try {
+                    $response = Http::withBasicAuth('mcgrew.zach@gmail.com', '89ACA402-5D94-6FDB-2069-6D284D6EF6EE')
+                                ->post('https://rest.clicksend.com/v3/sms/send', [
+                                    'messages' => [
+                                        [
+                                            'body' => 'Firestock - Your OTP code is '.$otpToken,
+                                            'to'   => $request->phone,
+                                            'from' => $request->phone,
+                                        ],
+                                    ],
+                                ]);
 
-                // $messageBody = env('APP_NAME')."\nOTP token is:$otpToken";
-                // $this->sendMessageToClient($request->phone, $messageBody);
-                // return $this->success(array("otp" => $otpToken, "api_token" => $token,"user_id" => $user->id));
+                } catch (\Exception $ex) {
+                    DB::rollback();
+
+                    return $this->error($ex->getMessage());
+                }
+                DB::commit();
                 return $this->success($user,"Registered successfully");
             } else {
                 return $this->error('Email is already exist', 200);
@@ -180,16 +188,24 @@ class AuthController extends Controller
         if ($user != null) {
             $digits = 4;
             $otpToken = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
-            $otpToken =  1234;
-            // $user->otp = $otpToken;
+            // $otpToken =  1234;
+            $user->otp = $otpToken;
             $user->save();
 
-            // try {
-            //     $messageBody = env('APP_NAME') . "\nOTP token is:$otpToken";
-            //     $this->sendMessageToClient($user->phone, $messageBody);
-            // } catch (\Exception $ex) {
-                //     return $this->error($ex->getMessage());
-                // }
+            try {
+                 $response = Http::withBasicAuth('mcgrew.zach@gmail.com', '89ACA402-5D94-6FDB-2069-6D284D6EF6EE')
+                            ->post('https://rest.clicksend.com/v3/sms/send', [
+                                'messages' => [
+                                    [
+                                        'body' => 'Firestock - Your OTP code is '.$otpToken,
+                                        'to'   => $user->phone,
+                                        'from' => $user->phone,
+                                    ],
+                                ],
+                            ]);
+            } catch (\Exception $ex) {
+                return $this->error($ex->getMessage());
+            }
             return $this->success(array("otp" => $otpToken));
         } else { 
             return $this->error('Invalid User');
